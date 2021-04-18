@@ -29,12 +29,23 @@ var arrayContributors = [
     },
 ]
 
-
+var a=false;
 arrayContributors=JSON.parse(localStorage.getItem('arrayContributors'));
+
+if(localStorage.getItem('loginStatus') == null){
+    localStorage.setItem('loginStatus', JSON.stringify(a));
+  }
 
 function nullCheck(){
     if(localStorage.getItem('arrayContributors') == null){
         localStorage.setItem('arrayContributors', JSON.stringify(arrayContributors));
+    }
+}
+
+function nullCheck2(){
+    var a = false;
+    if(localStorage.getItem('loginStatus') == null){
+        localStorage.setItem('loginStatus', JSON.stringify(a));
     }
 }
 
@@ -95,55 +106,56 @@ function Contributers() {
             </header>
 
            
-            
+            {nullCheck2()}
             {JSON.parse(localStorage.getItem('loginStatus'))==true &&
+            
             <div>
             
-            <button onClick={() => setButtonPopup(true)}>Add Contributor</button>
-            <br></br>
-            <br></br>
-            <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
-
-            <form onSubmit={handleSubmit}>
-            <fieldset>
-              <legend>Enter Name/Description/Image Link of Contributor</legend>
-              <ul>
-                  <label for="name">Name: </label>
-                  <input type="text" id="name" required/>
+                <button onClick={() => setButtonPopup(true)}>Add Contributor</button>
                 <br></br>
                 <br></br>
-                  <label for="description">Description: </label>
-                  <input type="text" id="description" required/> 
-                  <br></br>  
+                <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+
+                    <form onSubmit={handleSubmit}>
+                        <fieldset>
+                            <legend>Enter Name/Description/Image Link of Contributor</legend>
+                            <ul>
+                                <label for="name">Name: </label>
+                                <input type="text" id="name" required/>
+                                <br></br>
+                                <br></br>
+                                <label for="description">Description: </label>
+                                <input type="text" id="description" required/> 
+                                <br></br>  
+                                <br></br>
+                                <label for="image">Image Link: </label>
+                                <input type="text" id="image" required/> 
+                            </ul>
+                        </fieldset>
+                        <button>Add Contributor</button>
+                    </form>
+
+                </Popup>
+                
+                
+
+                <button onClick={() => setButtonPopup2(true)}>Remove Contributor</button>
                 <br></br>
-                  <label for="image">Image Link: </label>
-                  <input type="text" id="image" required/> 
-              </ul>
-            </fieldset>
-            <button>Add Contributor</button>
-            </form>
+                <br></br>
+                <Popup trigger={buttonPopup2} setTrigger={setButtonPopup2}>
 
-            </Popup>
-            
-            
+                    <form onSubmit={handleSubmit2}>
+                        <fieldset>
+                            <legend>Enter Name of Contributor</legend>
+                            <ul>
+                                <label for="name1">Name: </label>
+                                <input type="text" id="name1" required/>
+                            </ul>
+                        </fieldset>
+                        <button>Remove Contributor</button>
+                    </form>
 
-            <button onClick={() => setButtonPopup2(true)}>Remove Contributor</button>
-            <br></br>
-            <br></br>
-            <Popup trigger={buttonPopup2} setTrigger={setButtonPopup2}>
-
-            <form onSubmit={handleSubmit2}>
-            <fieldset>
-              <legend>Enter Name of Contributor</legend>
-              <ul>
-                  <label for="name1">Name: </label>
-                  <input type="text" id="name1" required/>
-              </ul>
-            </fieldset>
-            <button>Remove Contributor</button>
-            </form>
-
-            </Popup>
+                </Popup>
             </div>
             }           
             
