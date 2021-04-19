@@ -103,15 +103,15 @@ function Contributers() {
               <legend>Enter Name/Description/Image Link of Contributor</legend>
               <ul>
                   <label for="name">Name: </label>
-                  <input type="text" id="name" required/>
+                  <input id="name" required/>
                 <br></br>
                 <br></br>
                   <label for="description">Description: </label>
-                  <input type="text" id="description" required/> 
+                  <input id="description" required/> 
                   <br></br>  
                 <br></br>
                   <label for="image">Image Link: </label>
-                  <input type="text" id="image" required/> 
+                  <input id="image" required/> 
               </ul>
             </fieldset>
             <button>Add Contributor</button>
@@ -126,7 +126,7 @@ function Contributers() {
               <legend>Enter Name of Contributor</legend>
               <ul>
                   <label for="name1">Name: </label>
-                  <input type="text" id="name1" required/>
+                  <input id="name1" required/>
               </ul>
             </fieldset>
             <button>Remove Contributor</button>
