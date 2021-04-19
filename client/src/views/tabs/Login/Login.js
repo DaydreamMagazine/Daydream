@@ -142,11 +142,11 @@ function Login() {
               <legend>Enter Name/Password of Admin</legend>
               <ul>
                   <label for="name">Name: </label>
-                  <input type="text" id="name" required/>
+                  <input id="name" required/>
                 <br></br>
                 <br></br>
                   <label for="password">Password: </label>
-                  <input type="text" id="password" required/> 
+                  <input id="password" required/> 
                   <br></br>  
                 <br></br>
               </ul>
@@ -166,7 +166,7 @@ function Login() {
               <legend>Enter Username</legend>
               <ul>
                   <label for="name1">Name: </label>
-                  <input type="text" id="name1" required/>
+                  <input id="name1" required/>
               </ul>
             </fieldset>
             <button>Remove Admin</button>
