@@ -8,11 +8,6 @@ function delayedRedirect(){
 function LoginSuccessful() {
     return (
         <div className="App">
-            <header className="App-header">
-                <p>
-                
-                </p>
-            </header>
             <div className = "LoginSuccessful">
                 <div>
                    You have successfully logged in!
