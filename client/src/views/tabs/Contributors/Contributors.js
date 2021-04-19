@@ -26,14 +26,20 @@ var arrayContributors = [
         "image" : "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png",
     },
 ]
-var a = false;
-arrayContributors=JSON.parse(localStorage.getItem('arrayContributors'));
+var a=false;
 if(localStorage.getItem('loginStatus') == null){
     localStorage.setItem('loginStatus', JSON.stringify(a));
   }
-function nullCheck(){
     if(localStorage.getItem('arrayContributors') == null){
         localStorage.setItem('arrayContributors', JSON.stringify(arrayContributors));
+    }
+    else{
+        arrayContributors=JSON.parse(localStorage.getItem('arrayContributors'));
+    }
+function nullCheck2(){
+    var a = false;
+    if(localStorage.getItem('loginStatus') == null){
+        localStorage.setItem('loginStatus', JSON.stringify(a));
     }
 }
 function addContributor(){
@@ -84,6 +90,7 @@ function Contributers() {
                     Contributers
                 </p>
             </header>
+            {nullCheck2()}
             {JSON.parse(localStorage.getItem('loginStatus'))==true &&
             <div>
             <button onClick={() => setButtonPopup(true)}>Add Contributor</button>
@@ -126,7 +133,6 @@ function Contributers() {
             </Popup>
             </div>
             }           
-            {nullCheck()}
             {JSON.parse(localStorage.getItem('arrayContributors')).map(contributor =>
                 <ContributorList {...contributor}/>
             )}
