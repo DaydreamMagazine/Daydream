@@ -7,6 +7,7 @@ import './Login.css';
 import Popup from './../Contributors/Popup.js'
 import {useState} from 'react'
 import './../Contributors/Popup.css'
+
 var arrayAccounts = [
   {
       "username": "Joe",
@@ -16,35 +17,36 @@ var arrayAccounts = [
       "username": "Donny",
       "password": "abc",
   },
+  
 ]
+
 var loginStatus;
-if(localStorage.getItem('arrayAccounts') == null){
-  localStorage.setItem('arrayAccounts', JSON.stringify(arrayAccounts));
-}
+
 arrayAccounts=JSON.parse(localStorage.getItem('arrayAccounts'));
+
 function nullCheck(){
   if(localStorage.getItem('arrayAccounts') == null){
       localStorage.setItem('arrayAccounts', JSON.stringify(arrayAccounts));
   }
 }
-function nullCheck2(){
-  var a = false;
-  if(localStorage.getItem('loginStatus') == null){
-      localStorage.setItem('loginStatus', JSON.stringify(a));
-  }
-}
+
 function setLoginStatus(){
   var loggedIn=false;
   localStorage.setItem('loginStatus', JSON.stringify(loggedIn));
   alert("You have been logged out!")
   window.location.reload();
 }
+
+
+
+
   function redirect(){
   arrayAccounts=JSON.parse(localStorage.getItem('arrayAccounts'));  
   loginStatus=false;
   var username =  document.getElementById("username").value;
   var password=  document.getElementById("password").value;
-  for(var i = 0; i<arrayAccounts.length; i++){
+  var numAccounts = arrayAccounts.length;
+  for(var i = 0; i<numAccounts; i++){
     if(username==arrayAccounts[i].username && password==arrayAccounts[i].password){
        loginStatus=true;
        localStorage.setItem('loginStatus', JSON.stringify(loginStatus));
@@ -56,6 +58,7 @@ function setLoginStatus(){
     alert("Incorrect username or password!");
   }
 }
+
 function addAdmin(){
   var adminName =  document.getElementById("name").value;
   var adminPassword=  document.getElementById("password").value;
@@ -63,9 +66,11 @@ function addAdmin(){
   localStorage.setItem('arrayAccounts', JSON.stringify(arrayAccounts));
   arrayAccounts=JSON.parse(localStorage.getItem('arrayAccounts'));
   alert("Admin account successfully added!");
+
   document.getElementById("name").value="";
   document.getElementById("password").value="";
 }
+
 function removeAdmin(){
   var found = false;
   var adminName =  document.getElementById("name1").value;
@@ -83,37 +88,40 @@ function removeAdmin(){
   }
   document.getElementById("name1").value="";
 }
+
 const handleSubmit = event => {
   event.preventDefault();
   redirect();
 }
+
 const handleSubmit2 = event => {
   event.preventDefault();
   addAdmin();
 }
+
 const handleSubmit3 = event => {
   event.preventDefault();
   removeAdmin();
 }
+
 function Login() {
   const [buttonPopup, setButtonPopup] =  useState(false);
   const [buttonPopup2, setButtonPopup2] =  useState(false);
   const [buttonPopup3, setButtonPopup3] =  useState(false);
     return (
         <div className="App">
-            <header className="App-header">
-                <p>
-                    Login
-                </p>
-            </header>
+
             <div>
-            {nullCheck2()}
+            
            {JSON.parse(localStorage.getItem('loginStatus'))==true &&
+           
            <div>
+             <h3 className="App-header-C">Account Management</h3>
             <button onClick={() => setButtonPopup(true)}>View Admin Accounts</button>
             <br></br>
             <br></br>
             <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+
               Username : Password
               <br></br>
               <br></br>
@@ -123,6 +131,7 @@ function Login() {
             )}
               <br></br>
             </Popup>
+
             <div>
             <button onClick={() => setButtonPopup2(true)}>Add Administrator</button>
             <br></br>
@@ -146,10 +155,12 @@ function Login() {
             </form>
             </Popup>
             </div>
+
             <button onClick={() => setButtonPopup3(true)}>Remove Administrator</button>
             <br></br>
             <br></br>
             <Popup trigger={buttonPopup3} setTrigger={setButtonPopup3}>
+
             <form onSubmit={handleSubmit3}>
             <fieldset>
               <legend>Enter Username</legend>
@@ -160,20 +171,26 @@ function Login() {
             </fieldset>
             <button>Remove Admin</button>
             </form>
+
             </Popup>
+            
             <button onClick={setLoginStatus}>Logout</button>
             </div>
               }
+
+              
             {JSON.parse(localStorage.getItem('loginStatus'))==false &&
             <form onSubmit={handleSubmit} id="form">
-            <h2>Administrator Log In</h2>
+            <h2 className="App-header-C">Administrator Log In</h2>
             <fieldset>
               <legend>Log In</legend>
               <ul>
-                  <label for="username">Username:</label>
-                  <input type="text" id="username" required/>
+                
+                  <label for="username">Username: </label>
+                  <input id="username" required/> 
                 <br></br>
-                  <label for="password">Password:</label>
+                
+                  <label for="password">Password: </label>
                   <input type="password" id="password" required/> 
               </ul>
             </fieldset>
@@ -182,6 +199,8 @@ function Login() {
             }
             </div>
         </div>
+        
     );
 }
+
 export default Login;
