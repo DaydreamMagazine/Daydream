@@ -4,8 +4,6 @@ import ContributorList from './ContributorList'
 //import {arrayContributors} from './../Contributors/ContributorData.js'
 import Popup from './Popup.js'
 import {useState} from 'react'
-
-
 var arrayContributors = [
     {
         "name": "Contributor 1",
@@ -28,28 +26,16 @@ var arrayContributors = [
         "image" : "https://cdn.pixabay.com/photo/2016/08/08/09/17/avatar-1577909_960_720.png",
     },
 ]
-
-var a=false;
+var a = false;
 arrayContributors=JSON.parse(localStorage.getItem('arrayContributors'));
-
 if(localStorage.getItem('loginStatus') == null){
     localStorage.setItem('loginStatus', JSON.stringify(a));
   }
-
 function nullCheck(){
     if(localStorage.getItem('arrayContributors') == null){
         localStorage.setItem('arrayContributors', JSON.stringify(arrayContributors));
     }
 }
-
-function nullCheck2(){
-    var a = false;
-    if(localStorage.getItem('loginStatus') == null){
-        localStorage.setItem('loginStatus', JSON.stringify(a));
-    }
-}
-
-
 function addContributor(){
     var contributorName =  document.getElementById("name").value;
     var contributorDescription=  document.getElementById("description").value;
@@ -58,12 +44,10 @@ function addContributor(){
     localStorage.setItem('arrayContributors', JSON.stringify(arrayContributors));
     arrayContributors=JSON.parse(localStorage.getItem('arrayContributors'));
     alert("Contributor successfully added!");
-
     document.getElementById("name").value="";
     document.getElementById("description").value="";
     document.getElementById("image").value="";
 }
-
 function removeContributor(){
     var found = false;
     var contributorName =  document.getElementById("name1").value;
@@ -81,22 +65,18 @@ function removeContributor(){
     }
     document.getElementById("name1").value="";
 }
-
 const handleSubmit = event => {
     event.preventDefault();
     addContributor();
   }
-
   const handleSubmit2 = event => {
     event.preventDefault();
     removeContributor();
   }
-
 function Contributers() {
     const [buttonPopup, setButtonPopup] =  useState(false);
     const [buttonPopup2, setButtonPopup2] =  useState(false);
     return (
-        
         <div className="App">
             {document.body.style.zoom = (window.innerWidth / window.outerWidth)}
             <header className="App-header">
@@ -104,61 +84,48 @@ function Contributers() {
                     Contributers
                 </p>
             </header>
-
-           
-            {nullCheck2()}
             {JSON.parse(localStorage.getItem('loginStatus'))==true &&
-            
             <div>
-            
-                <button onClick={() => setButtonPopup(true)}>Add Contributor</button>
+            <button onClick={() => setButtonPopup(true)}>Add Contributor</button>
+            <br></br>
+            <br></br>
+            <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
+            <form onSubmit={handleSubmit}>
+            <fieldset>
+              <legend>Enter Name/Description/Image Link of Contributor</legend>
+              <ul>
+                  <label for="name">Name: </label>
+                  <input type="text" id="name" required/>
                 <br></br>
                 <br></br>
-                <Popup trigger={buttonPopup} setTrigger={setButtonPopup}>
-
-                    <form onSubmit={handleSubmit}>
-                        <fieldset>
-                            <legend>Enter Name/Description/Image Link of Contributor</legend>
-                            <ul>
-                                <label for="name">Name: </label>
-                                <input type="text" id="name" required/>
-                                <br></br>
-                                <br></br>
-                                <label for="description">Description: </label>
-                                <input type="text" id="description" required/> 
-                                <br></br>  
-                                <br></br>
-                                <label for="image">Image Link: </label>
-                                <input type="text" id="image" required/> 
-                            </ul>
-                        </fieldset>
-                        <button>Add Contributor</button>
-                    </form>
-
-                </Popup>
-                
-                
-
-                <button onClick={() => setButtonPopup2(true)}>Remove Contributor</button>
+                  <label for="description">Description: </label>
+                  <input type="text" id="description" required/> 
+                  <br></br>  
                 <br></br>
-                <br></br>
-                <Popup trigger={buttonPopup2} setTrigger={setButtonPopup2}>
-
-                    <form onSubmit={handleSubmit2}>
-                        <fieldset>
-                            <legend>Enter Name of Contributor</legend>
-                            <ul>
-                                <label for="name1">Name: </label>
-                                <input type="text" id="name1" required/>
-                            </ul>
-                        </fieldset>
-                        <button>Remove Contributor</button>
-                    </form>
-
-                </Popup>
+                  <label for="image">Image Link: </label>
+                  <input type="text" id="image" required/> 
+              </ul>
+            </fieldset>
+            <button>Add Contributor</button>
+            </form>
+            </Popup>
+            <button onClick={() => setButtonPopup2(true)}>Remove Contributor</button>
+            <br></br>
+            <br></br>
+            <Popup trigger={buttonPopup2} setTrigger={setButtonPopup2}>
+            <form onSubmit={handleSubmit2}>
+            <fieldset>
+              <legend>Enter Name of Contributor</legend>
+              <ul>
+                  <label for="name1">Name: </label>
+                  <input type="text" id="name1" required/>
+              </ul>
+            </fieldset>
+            <button>Remove Contributor</button>
+            </form>
+            </Popup>
             </div>
             }           
-            
             {nullCheck()}
             {JSON.parse(localStorage.getItem('arrayContributors')).map(contributor =>
                 <ContributorList {...contributor}/>
@@ -166,5 +133,4 @@ function Contributers() {
         </div>
     );
 }
-
 export default Contributers;
