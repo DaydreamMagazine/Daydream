@@ -37,4 +37,14 @@
   display:inline-block;
   }
   
-  
+  .App-header-C {
+   background-color: #28292c;
+   min-height: auto;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   font-size: calc(10px + 2vmin);
+   color: white;
+   font-family: Didot;
+}
