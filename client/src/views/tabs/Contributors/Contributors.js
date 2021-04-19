@@ -85,11 +85,12 @@ function Contributers() {
     return (
         <div className="App">
             {document.body.style.zoom = (window.innerWidth / window.outerWidth)}
-            <header className="App-header">
-                <p>
-                    Contributers
-                </p>
+            <header className="App-header-C">
+                <h2>
+                    Contributors
+                </h2>
             </header>
+            <br></br>
             {nullCheck2()}
             {JSON.parse(localStorage.getItem('loginStatus'))==true &&
             <div>
